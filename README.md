@@ -9,3 +9,5 @@ a git commit here, so the commit history doubles as a build changelog.
 
 Published via GitHub Pages once enabled: Settings -> Pages -> Deploy from
 branch -> main -> / (root).
+
+See it here: https://ckdash-git.github.io/quickpic-tracker/
