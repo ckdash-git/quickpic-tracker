@@ -62,8 +62,9 @@
       "id": "core-9",
       "cat": "Core Booking",
       "t": "Admin panel for managing services/slots",
-      "d": "Currently raw SQL only (seed.sql) - no UI yet.",
-      "s": "planned"
+      "d": "Full Admin Panel: services CRUD, bulk slot generation (timezone-safe, skips duplicates), slot deletion, coupons CRUD. Gated by ADMIN_EMAIL match on the same magic-link login - no separate admin credentials.",
+      "s": "done",
+      "commit": "https://github.com/ckdash-git/photo-studio/commit/9af9a6d8a991a2b4044400c029cf0fa241bb7e7e"
     },
     {
       "id": "pay-1",
@@ -470,6 +471,14 @@
       "t": "Real photos across the site (Pexels API)",
       "d": "image_search/web_search cannot reliably provide stable, license-clear URLs for a commercial codebase. Waiting on user to create a free Pexels API key.",
       "s": "planned"
+    },
+    {
+      "id": "auth-7",
+      "cat": "Accounts & Auth",
+      "t": "Seamless Customer/Photographer/Admin switching from one account",
+      "d": "Account page restructured into clear sections. Since Bookings/Account tabs in the app are WebView-backed, this improves the in-app experience automatically with zero native code changes.",
+      "s": "done",
+      "commit": "https://github.com/ckdash-git/photo-studio/commit/9af9a6d8a991a2b4044400c029cf0fa241bb7e7e"
     }
   ]
 }
