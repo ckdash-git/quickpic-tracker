@@ -2,67 +2,397 @@
   "product": "QuickPic",
   "updated": "2026-09-20",
   "items": [
-    { "id": "core-1", "cat": "Core Booking", "t": "Next.js 15 scaffold (TypeScript, Tailwind v4, App Router)", "d": "Project foundation, deployable to Vercel.", "s": "done" },
-    { "id": "core-2", "cat": "Core Booking", "t": "MiniMax DESIGN.md tokens wired into Tailwind + DM Sans", "d": "Colors, type scale, radii pulled from DESIGN.md into the theme.", "s": "done" },
-    { "id": "core-3", "cat": "Core Booking", "t": "DB schema: services, slots, bookings, payments, coupons, referrals", "d": "Core relational schema with RLS enabled from the start.", "s": "done" },
-    { "id": "core-4", "cat": "Core Booking", "t": "Home page service grid with gradient cards", "d": "MiniMax-style gradient treatment, one per service.", "s": "done" },
-    { "id": "core-5", "cat": "Core Booking", "t": "Slot picker + checkout form", "d": "Pick a slot, enter details, optional coupon code.", "s": "done" },
-    { "id": "core-6", "cat": "Core Booking", "t": "Coupon validation + atomic slot locking", "d": "Prevents double-booking via conditional UPDATE; coupon expiry/redemption-limit checks.", "s": "done" },
-    { "id": "core-7", "cat": "Core Booking", "t": "Booking confirmation page", "d": "Shows status, session, date, amount, booking ID.", "s": "done" },
-    { "id": "core-8", "cat": "Core Booking", "t": "Booking confirmation email via Resend", "d": "HTML + plain-text versions, sent on payment confirm.", "s": "done" },
-    { "id": "core-9", "cat": "Core Booking", "t": "Admin panel for managing services/slots", "d": "Currently raw SQL only (seed.sql) - no UI yet.", "s": "planned" },
-
-    { "id": "pay-1", "cat": "Payments", "t": "Payment provider abstraction", "d": "PaymentProvider interface - swapping mock for a real gateway touches one file, not the booking flow.", "s": "done" },
-    { "id": "pay-2", "cat": "Payments", "t": "Mock payment provider", "d": "Auto-confirms bookings and subscriptions for full end-to-end testing without a gateway.", "s": "done" },
-    { "id": "pay-3", "cat": "Payments", "t": "Razorpay setup research", "d": "Account creation, CKYC fast-track, Orders API + Checkout flow documented.", "s": "done" },
-    { "id": "pay-4", "cat": "Payments", "t": "Real Razorpay integration - customer bookings", "d": "Swap mock provider for real Orders API + webhook signature verification once live keys are in hand.", "s": "planned" },
-    { "id": "pay-5", "cat": "Payments", "t": "Real Razorpay integration - photographer lead subscriptions", "d": "Same swap, different flow.", "s": "planned" },
-    { "id": "pay-6", "cat": "Payments", "t": "Commission-based marketplace payments (Route/Easy Split)", "d": "For when direct commission-per-booking replaces the flat lead-fee model. Needs photographer vendor KYC via the gateway's own onboarding.", "s": "planned" },
-
-    { "id": "auth-1", "cat": "Accounts & Auth", "t": "Passwordless magic-link login (Supabase Auth)", "d": "No password - email link signs the customer/photographer in.", "s": "done" },
-    { "id": "auth-2", "cat": "Accounts & Auth", "t": "Auth callback route", "d": "Exchanges the magic-link code for a session.", "s": "done" },
-    { "id": "auth-3", "cat": "Accounts & Auth", "t": "My Bookings page", "d": "Logged-in customers see their own bookings only (RLS-scoped).", "s": "done" },
-    { "id": "auth-4", "cat": "Accounts & Auth", "t": "bookings.user_id + RLS policy", "d": "Links guest or logged-in bookings to an account.", "s": "done" },
-    { "id": "auth-5", "cat": "Accounts & Auth", "t": "Custom SMTP (Resend) for Supabase Auth emails", "d": "Routes magic-link emails through quickpic.click instead of Supabase's shared, rate-limited sender.", "s": "progress" },
-
-    { "id": "mail-1", "cat": "Email & Deliverability", "t": "Resend domain (quickpic.click) verified", "d": "SPF + DKIM confirmed.", "s": "done" },
-    { "id": "mail-2", "cat": "Email & Deliverability", "t": "Plain-text email alternative", "d": "Improves spam scoring alongside the HTML version.", "s": "done" },
-    { "id": "mail-3", "cat": "Email & Deliverability", "t": "Error logging for failed sends", "d": "Resend's error field is now surfaced instead of silently dropped.", "s": "done" },
-    { "id": "mail-4", "cat": "Email & Deliverability", "t": "DMARC record", "d": "Check/add _dmarc.quickpic.click TXT record.", "s": "progress" },
-    { "id": "mail-5", "cat": "Email & Deliverability", "t": "Domain reputation warm-up", "d": "New domain, currently landing in spam - improves with real send volume.", "s": "progress" },
-    { "id": "mail-6", "cat": "Email & Deliverability", "t": "Support addresses via Spaceship forwarding", "d": "Conflicts with Resend's MX record on the root domain - needs Resend moved to mail. subdomain first.", "s": "planned" },
-    { "id": "mail-7", "cat": "Email & Deliverability", "t": "Move Resend sending to mail.quickpic.click", "d": "Frees the root MX record for forwarding; Resend's own recommended practice.", "s": "planned" },
-
-    { "id": "mkt-1", "cat": "Photographer Marketplace", "t": "Photographer profiles + portfolios", "d": "Self-service create/edit, public browsing.", "s": "done" },
-    { "id": "mkt-2", "cat": "Photographer Marketplace", "t": "No contact info ever exposed publicly", "d": "Enforced at the schema level.", "s": "done" },
-    { "id": "mkt-3", "cat": "Photographer Marketplace", "t": "Requirements posting", "d": "Category, city, date, budget range, description.", "s": "done" },
-    { "id": "mkt-4", "cat": "Photographer Marketplace", "t": "Proposals", "d": "One proposal per photographer per requirement.", "s": "done" },
-    { "id": "mkt-5", "cat": "Photographer Marketplace", "t": "Lead access subscription gating", "d": "₹499/mo mock subscription unlocks browsing + quoting.", "s": "done" },
-    { "id": "mkt-6", "cat": "Photographer Marketplace", "t": "Accept/decline proposals flow", "d": "Customer accepts one, others auto-decline, requirement closes.", "s": "done" },
-    { "id": "mkt-7", "cat": "Photographer Marketplace", "t": "Portfolio direct image upload", "d": "Currently pasted URLs only.", "s": "planned" },
-    { "id": "mkt-8", "cat": "Photographer Marketplace", "t": "Image watermarking on upload", "d": "Discourages screenshotting straight to Instagram DMs.", "s": "planned" },
-    { "id": "mkt-9", "cat": "Photographer Marketplace", "t": "Masked/proxy calling", "d": "Temporary numbers so customer and photographer never see real numbers.", "s": "planned" },
-    { "id": "mkt-10", "cat": "Photographer Marketplace", "t": "In-platform chat with contact-info filtering", "d": "Server-side filtering to prevent going off-platform.", "s": "planned" },
-
-    { "id": "seo-1", "cat": "SEO & Marketing", "t": "Base SEO metadata", "d": "Title, description, OpenGraph in root layout.", "s": "done" },
-    { "id": "seo-2", "cat": "SEO & Marketing", "t": "sitemap.xml", "d": "", "s": "planned" },
-    { "id": "seo-3", "cat": "SEO & Marketing", "t": "robots.txt", "d": "", "s": "planned" },
-    { "id": "seo-4", "cat": "SEO & Marketing", "t": "LocalBusiness/Service schema markup", "d": "Helps with \"photographer near me\" search intent.", "s": "planned" },
-    { "id": "seo-5", "cat": "SEO & Marketing", "t": "Meta Pixel", "d": "Needed before running Meta ads.", "s": "planned" },
-    { "id": "seo-6", "cat": "SEO & Marketing", "t": "GA4", "d": "", "s": "planned" },
-
-    { "id": "mob-1", "cat": "Mobile App", "t": "Flutter WebView wrapper strategy", "d": "Site renders inside a WebView; session carries over automatically.", "s": "done" },
-    { "id": "mob-2", "cat": "Mobile App", "t": "Flutter project setup", "d": "Not started yet.", "s": "planned" },
-    { "id": "mob-3", "cat": "Mobile App", "t": "Native iOS Liquid Glass chrome", "d": "UiKitView + MethodChannel for nav bar/FAB/sheets in native SwiftUI, scoped to chrome around the WebView.", "s": "planned" },
-
-    { "id": "legal-1", "cat": "Legal & Compliance", "t": "Payment aggregator (RBI) risk identified", "d": "Chose the lead/subscription model specifically to avoid needing PA authorization for now.", "s": "done" },
-    { "id": "legal-2", "cat": "Legal & Compliance", "t": "Photographer vendor KYC (for commission model)", "d": "Handled by the gateway's own onboarding when that model is adopted.", "s": "planned" },
-    { "id": "legal-3", "cat": "Legal & Compliance", "t": "Tourist guide vertical - liability/insurance review", "d": "Physical-safety risk needs an actual lawyer before launch.", "s": "planned" },
-
-    { "id": "ops-1", "cat": "Infrastructure & Ops", "t": "GitHub repo + commit-by-commit workflow", "d": "ckdash-git/photo-studio.", "s": "done" },
-    { "id": "ops-2", "cat": "Infrastructure & Ops", "t": "Supabase project configured (RLS + grants)", "d": "Several rounds of fixes along the way.", "s": "done" },
-    { "id": "ops-3", "cat": "Infrastructure & Ops", "t": "Domain quickpic.click purchased + DNS configured", "d": "Registrar: Spaceship.", "s": "done" },
-    { "id": "ops-4", "cat": "Infrastructure & Ops", "t": "QuickPic rebrand across site/email/README", "d": "", "s": "done" },
-    { "id": "ops-5", "cat": "Infrastructure & Ops", "t": "GitHub repo rename to match QuickPic", "d": "Optional - deferred, changes the clone URL.", "s": "planned" }
+    {
+      "id": "core-1",
+      "cat": "Core Booking",
+      "t": "Next.js 15 scaffold (TypeScript, Tailwind v4, App Router)",
+      "d": "Project foundation, deployable to Vercel.",
+      "s": "done"
+    },
+    {
+      "id": "core-2",
+      "cat": "Core Booking",
+      "t": "MiniMax DESIGN.md tokens wired into Tailwind + DM Sans",
+      "d": "Colors, type scale, radii pulled from DESIGN.md into the theme.",
+      "s": "done"
+    },
+    {
+      "id": "core-3",
+      "cat": "Core Booking",
+      "t": "DB schema: services, slots, bookings, payments, coupons, referrals",
+      "d": "Core relational schema with RLS enabled from the start.",
+      "s": "done"
+    },
+    {
+      "id": "core-4",
+      "cat": "Core Booking",
+      "t": "Home page service grid with gradient cards",
+      "d": "MiniMax-style gradient treatment, one per service.",
+      "s": "done"
+    },
+    {
+      "id": "core-5",
+      "cat": "Core Booking",
+      "t": "Slot picker + checkout form",
+      "d": "Pick a slot, enter details, optional coupon code.",
+      "s": "done"
+    },
+    {
+      "id": "core-6",
+      "cat": "Core Booking",
+      "t": "Coupon validation + atomic slot locking",
+      "d": "Prevents double-booking via conditional UPDATE; coupon expiry/redemption-limit checks.",
+      "s": "done"
+    },
+    {
+      "id": "core-7",
+      "cat": "Core Booking",
+      "t": "Booking confirmation page",
+      "d": "Shows status, session, date, amount, booking ID.",
+      "s": "done"
+    },
+    {
+      "id": "core-8",
+      "cat": "Core Booking",
+      "t": "Booking confirmation email via Resend",
+      "d": "HTML + plain-text versions, sent on payment confirm.",
+      "s": "done"
+    },
+    {
+      "id": "core-9",
+      "cat": "Core Booking",
+      "t": "Admin panel for managing services/slots",
+      "d": "Currently raw SQL only (seed.sql) - no UI yet.",
+      "s": "planned"
+    },
+    {
+      "id": "pay-1",
+      "cat": "Payments",
+      "t": "Payment provider abstraction",
+      "d": "PaymentProvider interface - swapping mock for a real gateway touches one file, not the booking flow.",
+      "s": "done"
+    },
+    {
+      "id": "pay-2",
+      "cat": "Payments",
+      "t": "Mock payment provider",
+      "d": "Auto-confirms bookings and subscriptions for full end-to-end testing without a gateway.",
+      "s": "done"
+    },
+    {
+      "id": "pay-3",
+      "cat": "Payments",
+      "t": "Razorpay setup research",
+      "d": "Account creation, CKYC fast-track, Orders API + Checkout flow documented.",
+      "s": "done"
+    },
+    {
+      "id": "pay-4",
+      "cat": "Payments",
+      "t": "Real Razorpay integration - customer bookings",
+      "d": "Swap mock provider for real Orders API + webhook signature verification once live keys are in hand.",
+      "s": "planned"
+    },
+    {
+      "id": "pay-5",
+      "cat": "Payments",
+      "t": "Real Razorpay integration - photographer lead subscriptions",
+      "d": "Same swap, different flow.",
+      "s": "planned"
+    },
+    {
+      "id": "pay-6",
+      "cat": "Payments",
+      "t": "Commission-based marketplace payments (Route/Easy Split)",
+      "d": "For when direct commission-per-booking replaces the flat lead-fee model. Needs photographer vendor KYC via the gateway's own onboarding.",
+      "s": "planned"
+    },
+    {
+      "id": "auth-1",
+      "cat": "Accounts & Auth",
+      "t": "Passwordless magic-link login (Supabase Auth)",
+      "d": "No password - email link signs the customer/photographer in.",
+      "s": "done"
+    },
+    {
+      "id": "auth-2",
+      "cat": "Accounts & Auth",
+      "t": "Auth callback route",
+      "d": "Exchanges the magic-link code for a session.",
+      "s": "done"
+    },
+    {
+      "id": "auth-3",
+      "cat": "Accounts & Auth",
+      "t": "My Bookings page",
+      "d": "Logged-in customers see their own bookings only (RLS-scoped).",
+      "s": "done"
+    },
+    {
+      "id": "auth-4",
+      "cat": "Accounts & Auth",
+      "t": "bookings.user_id + RLS policy",
+      "d": "Links guest or logged-in bookings to an account.",
+      "s": "done"
+    },
+    {
+      "id": "auth-5",
+      "cat": "Accounts & Auth",
+      "t": "Custom SMTP (Resend) for Supabase Auth emails",
+      "d": "Routes magic-link emails through quickpic.click instead of Supabase's shared, rate-limited sender.",
+      "s": "progress"
+    },
+    {
+      "id": "mail-1",
+      "cat": "Email & Deliverability",
+      "t": "Resend domain (quickpic.click) verified",
+      "d": "SPF + DKIM confirmed.",
+      "s": "done"
+    },
+    {
+      "id": "mail-2",
+      "cat": "Email & Deliverability",
+      "t": "Plain-text email alternative",
+      "d": "Improves spam scoring alongside the HTML version.",
+      "s": "done"
+    },
+    {
+      "id": "mail-3",
+      "cat": "Email & Deliverability",
+      "t": "Error logging for failed sends",
+      "d": "Resend's error field is now surfaced instead of silently dropped.",
+      "s": "done"
+    },
+    {
+      "id": "mail-4",
+      "cat": "Email & Deliverability",
+      "t": "DMARC record",
+      "d": "Check/add _dmarc.quickpic.click TXT record.",
+      "s": "progress"
+    },
+    {
+      "id": "mail-5",
+      "cat": "Email & Deliverability",
+      "t": "Domain reputation warm-up",
+      "d": "New domain, currently landing in spam - improves with real send volume.",
+      "s": "progress"
+    },
+    {
+      "id": "mail-6",
+      "cat": "Email & Deliverability",
+      "t": "Support addresses via Spaceship forwarding",
+      "d": "Conflicts with Resend's MX record on the root domain - needs Resend moved to mail. subdomain first.",
+      "s": "planned"
+    },
+    {
+      "id": "mail-7",
+      "cat": "Email & Deliverability",
+      "t": "Move Resend sending to mail.quickpic.click",
+      "d": "Frees the root MX record for forwarding; Resend's own recommended practice.",
+      "s": "planned"
+    },
+    {
+      "id": "mkt-1",
+      "cat": "Photographer Marketplace",
+      "t": "Photographer profiles + portfolios",
+      "d": "Self-service create/edit, public browsing.",
+      "s": "done"
+    },
+    {
+      "id": "mkt-2",
+      "cat": "Photographer Marketplace",
+      "t": "No contact info ever exposed publicly",
+      "d": "Enforced at the schema level.",
+      "s": "done"
+    },
+    {
+      "id": "mkt-3",
+      "cat": "Photographer Marketplace",
+      "t": "Requirements posting",
+      "d": "Category, city, date, budget range, description.",
+      "s": "done"
+    },
+    {
+      "id": "mkt-4",
+      "cat": "Photographer Marketplace",
+      "t": "Proposals",
+      "d": "One proposal per photographer per requirement.",
+      "s": "done"
+    },
+    {
+      "id": "mkt-5",
+      "cat": "Photographer Marketplace",
+      "t": "Lead access subscription gating",
+      "d": "\u20b9499/mo mock subscription unlocks browsing + quoting.",
+      "s": "done"
+    },
+    {
+      "id": "mkt-6",
+      "cat": "Photographer Marketplace",
+      "t": "Accept/decline proposals flow",
+      "d": "Customer accepts one, others auto-decline, requirement closes.",
+      "s": "done"
+    },
+    {
+      "id": "mkt-7",
+      "cat": "Photographer Marketplace",
+      "t": "Portfolio direct image upload",
+      "d": "Currently pasted URLs only.",
+      "s": "planned"
+    },
+    {
+      "id": "mkt-8",
+      "cat": "Photographer Marketplace",
+      "t": "Image watermarking on upload",
+      "d": "Discourages screenshotting straight to Instagram DMs.",
+      "s": "planned"
+    },
+    {
+      "id": "mkt-9",
+      "cat": "Photographer Marketplace",
+      "t": "Masked/proxy calling",
+      "d": "Temporary numbers so customer and photographer never see real numbers.",
+      "s": "planned"
+    },
+    {
+      "id": "mkt-10",
+      "cat": "Photographer Marketplace",
+      "t": "In-platform chat with contact-info filtering",
+      "d": "Server-side filtering to prevent going off-platform.",
+      "s": "planned"
+    },
+    {
+      "id": "seo-1",
+      "cat": "SEO & Marketing",
+      "t": "Base SEO metadata",
+      "d": "Title, description, OpenGraph in root layout.",
+      "s": "done"
+    },
+    {
+      "id": "seo-2",
+      "cat": "SEO & Marketing",
+      "t": "sitemap.xml",
+      "d": "",
+      "s": "planned"
+    },
+    {
+      "id": "seo-3",
+      "cat": "SEO & Marketing",
+      "t": "robots.txt",
+      "d": "",
+      "s": "planned"
+    },
+    {
+      "id": "seo-4",
+      "cat": "SEO & Marketing",
+      "t": "LocalBusiness/Service schema markup",
+      "d": "Helps with \"photographer near me\" search intent.",
+      "s": "planned"
+    },
+    {
+      "id": "seo-5",
+      "cat": "SEO & Marketing",
+      "t": "Meta Pixel",
+      "d": "Needed before running Meta ads.",
+      "s": "planned"
+    },
+    {
+      "id": "seo-6",
+      "cat": "SEO & Marketing",
+      "t": "GA4",
+      "d": "",
+      "s": "planned"
+    },
+    {
+      "id": "mob-1",
+      "cat": "Mobile App",
+      "t": "Flutter WebView wrapper strategy",
+      "d": "Site renders inside a WebView; session carries over automatically.",
+      "s": "done"
+    },
+    {
+      "id": "mob-2",
+      "cat": "Mobile App",
+      "t": "Flutter project setup",
+      "d": "Flutter project created locally (quick_pic) - WebView wrapper implementation not yet built.",
+      "s": "progress"
+    },
+    {
+      "id": "mob-3",
+      "cat": "Mobile App",
+      "t": "Native iOS Liquid Glass chrome",
+      "d": "UiKitView + MethodChannel for nav bar/FAB/sheets in native SwiftUI, scoped to chrome around the WebView.",
+      "s": "planned"
+    },
+    {
+      "id": "legal-1",
+      "cat": "Legal & Compliance",
+      "t": "Payment aggregator (RBI) risk identified",
+      "d": "Chose the lead/subscription model specifically to avoid needing PA authorization for now.",
+      "s": "done"
+    },
+    {
+      "id": "legal-2",
+      "cat": "Legal & Compliance",
+      "t": "Photographer vendor KYC (for commission model)",
+      "d": "Handled by the gateway's own onboarding when that model is adopted.",
+      "s": "planned"
+    },
+    {
+      "id": "legal-3",
+      "cat": "Legal & Compliance",
+      "t": "Tourist guide vertical - liability/insurance review",
+      "d": "Physical-safety risk needs an actual lawyer before launch.",
+      "s": "planned"
+    },
+    {
+      "id": "ops-1",
+      "cat": "Infrastructure & Ops",
+      "t": "GitHub repo + commit-by-commit workflow",
+      "d": "ckdash-git/photo-studio.",
+      "s": "done"
+    },
+    {
+      "id": "ops-2",
+      "cat": "Infrastructure & Ops",
+      "t": "Supabase project configured (RLS + grants)",
+      "d": "Several rounds of fixes along the way.",
+      "s": "done"
+    },
+    {
+      "id": "ops-3",
+      "cat": "Infrastructure & Ops",
+      "t": "Domain quickpic.click purchased + DNS configured",
+      "d": "Registrar: Spaceship.",
+      "s": "done"
+    },
+    {
+      "id": "ops-4",
+      "cat": "Infrastructure & Ops",
+      "t": "QuickPic rebrand across site/email/README",
+      "d": "",
+      "s": "done"
+    },
+    {
+      "id": "ops-5",
+      "cat": "Infrastructure & Ops",
+      "t": "GitHub repo rename to match QuickPic",
+      "d": "Optional - deferred, changes the clone URL.",
+      "s": "planned"
+    },
+    {
+      "id": "ui-1",
+      "cat": "Core Booking",
+      "t": "Responsive header + mobile menu, site footer",
+      "d": "Nav no longer overflows on mobile; footer added site-wide.",
+      "s": "done"
+    },
+    {
+      "id": "ui-2",
+      "cat": "Core Booking",
+      "t": "Homepage explains both paths (instant booking vs marketplace quote)",
+      "d": "Previously the marketplace was only discoverable via nav links.",
+      "s": "done"
+    }
   ]
 }
