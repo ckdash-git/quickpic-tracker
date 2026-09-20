@@ -307,7 +307,7 @@
       "id": "mob-1",
       "cat": "Mobile App",
       "t": "Flutter WebView wrapper strategy",
-      "d": "WebView loads quickpic.click full-screen; Android back button navigates WebView history; offline/error state with retry.",
+      "d": "WebView loads quickpic.click full-screen; verified building and running on both simulator and a physical iPhone. Android back button navigates WebView history; offline/error state with retry.",
       "s": "done"
     },
     {
