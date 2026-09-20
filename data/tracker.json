@@ -414,6 +414,41 @@
       "t": "/account page",
       "d": "Shows email, links to My Bookings and photographer profile, sign out. Needed as a real destination for the app's Account tab.",
       "s": "done"
+    },
+    {
+      "id": "ui-4",
+      "cat": "Core Booking",
+      "t": "Homepage: numbered steps, trust signals, photographer teaser row",
+      "d": "Fills out what was a fairly bare homepage - ties both products (direct booking + marketplace) together visually.",
+      "s": "done"
+    },
+    {
+      "id": "ui-5",
+      "cat": "Core Booking",
+      "t": "Photographer directory shows real portfolio thumbnails",
+      "d": "Was previously fetched but never displayed - cards were just text before.",
+      "s": "done"
+    },
+    {
+      "id": "ui-6",
+      "cat": "Core Booking",
+      "t": "Branded 404 page + generic loading skeleton for all routes",
+      "d": "",
+      "s": "done"
+    },
+    {
+      "id": "legal-4",
+      "cat": "Legal & Compliance",
+      "t": "Terms, Privacy, Refund/Cancellation draft pages",
+      "d": "Genuinely needed before ads and gateway approval - explicitly flagged as unreviewed drafts on each page, not real legal advice. Refund policy describes a cancel-booking flow that does not actually exist yet in the product.",
+      "s": "progress"
+    },
+    {
+      "id": "mail-8",
+      "cat": "Email & Deliverability",
+      "t": "support@ / bookings@ do not receive mail yet",
+      "d": "MX record is owned by Resend (for bounce handling); Spaceship forwarding was deferred earlier due to that conflict. Legal pages currently list bookings@quickpic.click as contact but it is not actually monitored yet.",
+      "s": "planned"
     }
   ]
 }
