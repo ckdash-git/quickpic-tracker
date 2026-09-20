@@ -479,6 +479,14 @@
       "d": "Account page restructured into clear sections. Since Bookings/Account tabs in the app are WebView-backed, this improves the in-app experience automatically with zero native code changes.",
       "s": "done",
       "commit": "https://github.com/ckdash-git/photo-studio/commit/9af9a6d8a991a2b4044400c029cf0fa241bb7e7e"
+    },
+    {
+      "id": "ref-1",
+      "cat": "Core Booking",
+      "t": "Referral program - full loop",
+      "d": "Unique code per user, welcome coupon on signup (via /r/[code] link + cookie capture), referrer reward issued only after the friend's first CONFIRMED booking (not just signup - keeps it contingent on real revenue), per-user coupon restriction so codes can't be reused by others, admin-configurable reward percentages, invite page using the Web Share API (real native share sheet inside the app, no Swift/Dart needed).",
+      "s": "done",
+      "commit": "https://github.com/ckdash-git/photo-studio/commit/45a9df1cc7413d06a2c0583476f6259df21b0d7e"
     }
   ]
 }
