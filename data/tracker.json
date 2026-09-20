@@ -307,15 +307,15 @@
       "id": "mob-1",
       "cat": "Mobile App",
       "t": "Flutter WebView wrapper strategy",
-      "d": "Site renders inside a WebView; session carries over automatically.",
+      "d": "WebView loads quickpic.click full-screen; Android back button navigates WebView history; offline/error state with retry.",
       "s": "done"
     },
     {
       "id": "mob-2",
       "cat": "Mobile App",
       "t": "Flutter project setup",
-      "d": "Flutter project created locally (quick_pic) - WebView wrapper implementation not yet built.",
-      "s": "progress"
+      "d": "Flutter project (quick_pic) scaffolded, pushed to QuickPick-Mobile repo.",
+      "s": "done"
     },
     {
       "id": "mob-3",
