@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>QuickPic — Build Status</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #0a0a0a;
+    --on-primary: #ffffff;
+    --canvas: #ffffff;
+    --surface: #f7f8fa;
+    --surface-soft: #f2f3f5;
+    --hairline: #e5e7eb;
+    --ink: #0a0a0a;
+    --slate: #45515e;
+    --stone: #8e8e93;
+    --success-bg: #e8ffea;
+    --success-text: #1ba673;
+    --warn-bg: #fff4e5;
+    --warn-text: #b25e09;
+    --plan-bg: #f2f3f5;
+    --plan-text: #5f5f5f;
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--canvas); color: var(--ink); font-family: 'DM Sans', system-ui, sans-serif; }
+  a { color: inherit; }
+
+  header.hero { border-bottom: 1px solid var(--hairline); padding: 40px 24px 28px; }
+  .hero-inner { max-width: 1100px; margin: 0 auto; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 15px; }
+  .brand-dot { width: 8px; height: 8px; border-radius: 50%; background: linear-gradient(135deg, #ff5530, #ea5ec1); }
+  h1 { font-size: 34px; font-weight: 700; letter-spacing: -0.8px; margin: 14px 0 6px; }
+  .hero-sub { color: var(--slate); font-size: 15px; margin: 0; max-width: 560px; }
+  .hero-meta { color: var(--stone); font-size: 12px; margin-top: 14px; font-family: 'DM Mono', monospace; }
+
+  .stats-row { max-width: 1100px; margin: 24px auto 0; padding: 0 24px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .stat-card { flex: 1; min-width: 120px; background: var(--surface); border: 1px solid var(--hairline); border-radius: var(--radius); padding: 14px 16px; }
+  .stat-card .num { font-size: 24px; font-weight: 700; }
+  .stat-card .lbl { font-size: 12px; color: var(--stone); margin-top: 2px; }
+  .progress-track { height: 6px; background: var(--surface-soft); border-radius: 99px; overflow: hidden; margin-top: 8px; }
+  .progress-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, #ff5530, #ea5ec1); }
+
+  main { max-width: 1100px; margin: 0 auto; padding: 28px 24px 80px; }
+
+  .controls { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 20px; }
+  .chip {
+    font-size: 12px; font-weight: 600; padding: 6px 12px; border-radius: 99px;
+    border: 1px solid var(--hairline); background: var(--canvas); cursor: pointer; color: var(--slate);
+    white-space: nowrap;
+  }
+  .chip.active { background: var(--primary); color: var(--on-primary); border-color: var(--primary); }
+  #search {
+    font-family: inherit; font-size: 13px; border: 1px solid var(--hairline); border-radius: 99px;
+    padding: 7px 14px; flex: 1; min-width: 160px; background: var(--canvas); color: var(--ink);
+  }
+
+  .board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 800px) { .board { grid-template-columns: 1fr; } }
+
+  .column-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; padding: 0 2px; }
+  .column-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; }
+  .column-count { font-size: 12px; color: var(--stone); font-family: 'DM Mono', monospace; }
+  .column.planned .column-title { color: var(--plan-text); }
+  .column.progress .column-title { color: var(--warn-text); }
+  .column.done .column-title { color: var(--success-text); }
+
+  .column-items { display: flex; flex-direction: column; gap: 8px; }
+  .card {
+    background: var(--canvas); border: 1px solid var(--hairline); border-left: 3px solid var(--cat-color, var(--stone));
+    border-radius: var(--radius); padding: 12px 14px;
+  }
+  .card-title { font-size: 13.5px; font-weight: 600; line-height: 1.4; }
+  .card-desc { font-size: 12.5px; color: var(--slate); margin: 5px 0 0; line-height: 1.45; }
+  .card-cat { display: inline-block; font-size: 10.5px; font-weight: 600; color: var(--cat-color, var(--stone)); margin-top: 8px; }
+
+  .empty-col { font-size: 12px; color: var(--stone); padding: 12px 2px; }
+  footer { max-width: 1100px; margin: 0 auto; padding: 0 24px 40px; font-size: 12px; color: var(--stone); }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-inner">
+    <div class="brand"><span class="brand-dot"></span> QuickPic</div>
+    <h1>Build status</h1>
+    <p class="hero-sub">What's shipped, in progress, and planned across QuickPic's booking platform and photographer marketplace.</p>
+    <p class="hero-meta" id="lastUpdated"></p>
+  </div>
+</header>
+
+<div class="stats-row">
+  <div class="stat-card"><div class="num" id="statDone">–</div><div class="lbl">Done</div></div>
+  <div class="stat-card"><div class="num" id="statProgress">–</div><div class="lbl">In progress</div></div>
+  <div class="stat-card"><div class="num" id="statPlanned">–</div><div class="lbl">Planned</div></div>
+  <div class="stat-card" style="flex:2;">
+    <div class="num" id="statPct">–</div><div class="lbl">Complete</div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+  </div>
+</div>
+
+<main>
+  <div class="controls">
+    <input type="text" id="search" placeholder="Search…">
+    <div id="catChips" style="display:flex; gap:8px; flex-wrap:wrap;"></div>
+  </div>
+
+  <div class="board">
+    <div class="column planned">
+      <div class="column-head"><span class="column-title">Planned</span><span class="column-count" id="countPlanned">0</span></div>
+      <div class="column-items" id="colPlanned"></div>
+    </div>
+    <div class="column progress">
+      <div class="column-head"><span class="column-title">In progress</span><span class="column-count" id="countProgress">0</span></div>
+      <div class="column-items" id="colProgress"></div>
+    </div>
+    <div class="column done">
+      <div class="column-head"><span class="column-title">Done</span><span class="column-count" id="countDone">0</span></div>
+      <div class="column-items" id="colDone"></div>
+    </div>
+  </div>
+</main>
+
+<footer>Source of truth: <code>data/tracker.json</code> in this repo — every update here is a git commit.</footer>
+
+<script>
+const CATEGORY_COLORS = {
+  "Core Booking": "#ff5530",
+  "Payments": "#ea5ec1",
+  "Accounts & Auth": "#1456f0",
+  "Email & Deliverability": "#a855f7",
+  "Photographer Marketplace": "#ff5530",
+  "SEO & Marketing": "#ea5ec1",
+  "Mobile App": "#1456f0",
+  "Legal & Compliance": "#a855f7",
+  "Infrastructure & Ops": "#3daeff",
+};
+
+let allItems = [];
+let activeCat = 'all';
+
+async function load() {
+  const res = await fetch('data/tracker.json?_=' + Date.now());
+  const json = await res.json();
+  allItems = json.items;
+  document.getElementById('lastUpdated').textContent = 'Last updated ' + json.updated;
+  buildCategoryChips();
+  render();
+}
+
+function buildCategoryChips() {
+  const cats = [...new Set(allItems.map(i => i.cat))];
+  const wrap = document.getElementById('catChips');
+  wrap.innerHTML = '';
+  const allChip = document.createElement('button');
+  allChip.className = 'chip active';
+  allChip.textContent = 'All';
+  allChip.onclick = () => { activeCat = 'all'; render(); };
+  wrap.appendChild(allChip);
+  cats.forEach(cat => {
+    const chip = document.createElement('button');
+    chip.className = 'chip';
+    chip.textContent = cat;
+    chip.onclick = () => { activeCat = cat; render(); };
+    wrap.appendChild(chip);
+  });
+}
+
+function render() {
+  document.querySelectorAll('.chip').forEach(c => {
+    c.classList.toggle('active', (c.textContent === 'All' && activeCat === 'all') || c.textContent === activeCat);
+  });
+
+  const search = document.getElementById('search').value.trim().toLowerCase();
+  const visible = allItems.filter(i => {
+    const matchesCat = activeCat === 'all' || i.cat === activeCat;
+    const matchesSearch = !search || i.t.toLowerCase().includes(search) || (i.d||'').toLowerCase().includes(search);
+    return matchesCat && matchesSearch;
+  });
+
+  const byStatus = { planned: [], progress: [], done: [] };
+  visible.forEach(i => byStatus[i.s]?.push(i));
+
+  renderColumn('colPlanned', byStatus.planned);
+  renderColumn('colProgress', byStatus.progress);
+  renderColumn('colDone', byStatus.done);
+  document.getElementById('countPlanned').textContent = byStatus.planned.length;
+  document.getElementById('countProgress').textContent = byStatus.progress.length;
+  document.getElementById('countDone').textContent = byStatus.done.length;
+
+  const totalAll = allItems.length;
+  const totalDone = allItems.filter(i => i.s === 'done').length;
+  const totalProgress = allItems.filter(i => i.s === 'progress').length;
+  const totalPlanned = allItems.filter(i => i.s === 'planned').length;
+  document.getElementById('statDone').textContent = totalDone;
+  document.getElementById('statProgress').textContent = totalProgress;
+  document.getElementById('statPlanned').textContent = totalPlanned;
+  const pct = totalAll ? Math.round((totalDone/totalAll)*100) : 0;
+  document.getElementById('statPct').textContent = pct + '%';
+  document.getElementById('progressFill').style.width = pct + '%';
+}
+
+function renderColumn(elId, items) {
+  const el = document.getElementById(elId);
+  if (items.length === 0) { el.innerHTML = '<div class="empty-col">Nothing here.</div>'; return; }
+  el.innerHTML = items.map(i => `
+    <div class="card" style="--cat-color:${CATEGORY_COLORS[i.cat] || '#8e8e93'}">
+      <div class="card-title">${escapeHtml(i.t)}</div>
+      ${i.d ? `<p class="card-desc">${escapeHtml(i.d)}</p>` : ''}
+      <span class="card-cat">${escapeHtml(i.cat)}</span>
+    </div>
+  `).join('');
+}
+
+function escapeHtml(s) {
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+document.getElementById('search').addEventListener('input', render);
+load();
+</script>
+</body>
+</html>
