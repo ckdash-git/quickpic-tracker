@@ -321,8 +321,8 @@
       "id": "mob-3",
       "cat": "Mobile App",
       "t": "Native iOS Liquid Glass chrome",
-      "d": "UiKitView + MethodChannel for nav bar/FAB/sheets in native SwiftUI, scoped to chrome around the WebView.",
-      "s": "planned"
+      "d": "App icon + splash screen shipped (minimal monochrome lens mark). Native tabbed shell built (Home/Photographers/Bookings/Account bottom tabs, each a persistent WebView). Still pending: true native SwiftUI Liquid Glass chrome (this uses standard Flutter BottomNavigationBar, not platform views yet).",
+      "s": "progress"
     },
     {
       "id": "legal-1",
@@ -398,8 +398,22 @@
       "id": "ops-6",
       "cat": "Infrastructure & Ops",
       "t": "Deploy to production (Vercel + custom domain)",
-      "d": "Everything so far has been built/tested against npm run dev only - quickpic.click has never actually been deployed. Blocks real bookings, Meta ads, and the mobile app (which loads the live domain).",
-      "s": "progress"
+      "d": "Deployed to production - Vercel connected to GitHub (auto-deploys on push), quickpic.click DNS connected. Confirmed live and rendering correctly, including in Instagram in-app browser.",
+      "s": "done"
+    },
+    {
+      "id": "ui-3",
+      "cat": "Core Booking",
+      "t": "App-like feel on web (disable pinch-zoom, text-select callout, tap-flash, overscroll bounce)",
+      "d": "Removes the most obvious \"this is a website\" tells, for both the Flutter WebView and browsers like Instagram's in-app browser.",
+      "s": "done"
+    },
+    {
+      "id": "auth-6",
+      "cat": "Accounts & Auth",
+      "t": "/account page",
+      "d": "Shows email, links to My Bookings and photographer profile, sign out. Needed as a real destination for the app's Account tab.",
+      "s": "done"
     }
   ]
 }
