@@ -449,6 +449,27 @@
       "t": "support@ / bookings@ do not receive mail yet",
       "d": "MX record is owned by Resend (for bounce handling); Spaceship forwarding was deferred earlier due to that conflict. Legal pages currently list bookings@quickpic.click as contact but it is not actually monitored yet.",
       "s": "planned"
+    },
+    {
+      "id": "ui-7",
+      "cat": "Photographer Marketplace",
+      "t": "Photographer profile page polish",
+      "d": "Avatar initial, category chips, empty-portfolio state, and a clear post-a-job CTA (previously no obvious action on this page).",
+      "s": "done"
+    },
+    {
+      "id": "ui-8",
+      "cat": "Photographer Marketplace",
+      "t": "Leads and requirement detail page polish",
+      "d": "Category/status chips, posted-time-ago, better empty states.",
+      "s": "done"
+    },
+    {
+      "id": "ui-9",
+      "cat": "Core Booking",
+      "t": "Real photos across the site (Pexels API)",
+      "d": "image_search/web_search cannot reliably provide stable, license-clear URLs for a commercial codebase. Waiting on user to create a free Pexels API key.",
+      "s": "planned"
     }
   ]
 }
