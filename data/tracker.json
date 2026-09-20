@@ -321,7 +321,7 @@
       "id": "mob-3",
       "cat": "Mobile App",
       "t": "Native iOS Liquid Glass chrome",
-      "d": "App icon + splash screen shipped (minimal monochrome lens mark). Native tabbed shell built (Home/Photographers/Bookings/Account bottom tabs, each a persistent WebView). Still pending: true native SwiftUI Liquid Glass chrome (this uses standard Flutter BottomNavigationBar, not platform views yet).",
+      "d": "Native SwiftUI TabView shell written (SceneDelegate.swift), swapping the visible root from FlutterViewController to native tabs with per-tab WKWebView, on iOS only. Gets iOS 26 Liquid Glass tab bar automatically (system default, no custom glass code). Android keeps the Flutter tab shell - deliberate platform fork for the shell. UNVERIFIED - written without a Swift compiler available; pending a real device/simulator build.",
       "s": "progress"
     },
     {
