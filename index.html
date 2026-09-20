@@ -69,7 +69,9 @@
   .column.progress .column-title { color: var(--warn-text); }
   .column.done .column-title { color: var(--success-text); }
 
-  .column-items { display: flex; flex-direction: column; gap: 8px; }
+  .column-items { display: flex; flex-direction: column; gap: 8px; max-height: 65vh; overflow-y: auto; padding-right: 4px; }
+  .column-items::-webkit-scrollbar { width: 6px; }
+  .column-items::-webkit-scrollbar-thumb { background: var(--hairline); border-radius: 99px; }
   .card {
     background: var(--canvas); border: 1px solid var(--hairline); border-left: 3px solid var(--cat-color, var(--stone));
     border-radius: var(--radius); padding: 12px 14px;
@@ -77,6 +79,8 @@
   .card-title { font-size: 13.5px; font-weight: 600; line-height: 1.4; }
   .card-desc { font-size: 12.5px; color: var(--slate); margin: 5px 0 0; line-height: 1.45; }
   .card-cat { display: inline-block; font-size: 10.5px; font-weight: 600; color: var(--cat-color, var(--stone)); margin-top: 8px; }
+  .card-commit { display: inline-block; font-size: 10.5px; color: var(--stone); margin-top: 6px; margin-left: 8px; font-family: 'DM Mono', monospace; }
+  .card-commit:hover { color: var(--ink); }
 
   .empty-col { font-size: 12px; color: var(--stone); padding: 12px 2px; }
   footer { max-width: 1100px; margin: 0 auto; padding: 0 24px 40px; font-size: 12px; color: var(--stone); }
@@ -211,6 +215,7 @@ function renderColumn(elId, items) {
       <div class="card-title">${escapeHtml(i.t)}</div>
       ${i.d ? `<p class="card-desc">${escapeHtml(i.d)}</p>` : ''}
       <span class="card-cat">${escapeHtml(i.cat)}</span>
+      ${i.commit ? `<a class="card-commit" href="${escapeAttr(i.commit)}" target="_blank" rel="noopener">view commit →</a>` : ''}
     </div>
   `).join('');
 }
@@ -219,6 +224,10 @@ function escapeHtml(s) {
   const d = document.createElement('div');
   d.textContent = s;
   return d.innerHTML;
+}
+
+function escapeAttr(s) {
+  return String(s).replace(/"/g, '&quot;');
 }
 
 document.getElementById('search').addEventListener('input', render);
