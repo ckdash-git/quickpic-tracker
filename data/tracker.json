@@ -393,6 +393,13 @@
       "t": "Homepage explains both paths (instant booking vs marketplace quote)",
       "d": "Previously the marketplace was only discoverable via nav links.",
       "s": "done"
+    },
+    {
+      "id": "ops-6",
+      "cat": "Infrastructure & Ops",
+      "t": "Deploy to production (Vercel + custom domain)",
+      "d": "Everything so far has been built/tested against npm run dev only - quickpic.click has never actually been deployed. Blocks real bookings, Meta ads, and the mobile app (which loads the live domain).",
+      "s": "progress"
     }
   ]
 }
