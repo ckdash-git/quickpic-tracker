@@ -504,6 +504,13 @@
       "d": "emailRedirectTo used window.location.origin, so a www visitor generated a redirect URL Supabase's allow-list rejected (only non-www was whitelisted), silently falling back to the Site URL root and never exchanging the code for a session. Now uses the canonical NEXT_PUBLIC_SITE_URL. Also needs a Vercel www\u2192non-www domain redirect and the www callback added to Supabase's allow-list as belt-and-suspenders.",
       "s": "done",
       "commit": "https://github.com/ckdash-git/photo-studio/commit/5c455c0ef0a94904462f669d9ce429bbf89ab025"
+    },
+    {
+      "id": "mail-9",
+      "cat": "Email & Deliverability",
+      "t": "Diagnosed: Resend click tracking breaks magic link login",
+      "d": "Click tracking rewrites the magic link into a links.quickpic.click tracker URL. Email security scanners/clients pre-fetch links automatically, silently consuming the one-time PKCE token before the real human click. Fix: disable Click Tracking on the domain in Resend (Open tracking is fine to keep - pixel-based, does not rewrite URLs). Config-only fix, no code change - pending user confirmation it resolves login.",
+      "s": "progress"
     }
   ]
 }
