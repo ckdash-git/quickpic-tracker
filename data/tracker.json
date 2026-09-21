@@ -469,8 +469,9 @@
       "id": "ui-9",
       "cat": "Core Booking",
       "t": "Real photos across the site (Pexels API)",
-      "d": "image_search/web_search cannot reliably provide stable, license-clear URLs for a commercial codebase. Waiting on user to create a free Pexels API key.",
-      "s": "planned"
+      "d": "Pixabay API integration - images downloaded server-side and re-hosted in our own Supabase Storage (Pixabay does not allow permanent hotlinking, and their medium URLs expire after 24h). Generic admin picker at /admin/images. Homepage hero wired up first, with photographer attribution.",
+      "s": "done",
+      "commit": "https://github.com/ckdash-git/photo-studio/commit/6c9223747da5e781ebe61b9e25931102d80c5bcc"
     },
     {
       "id": "auth-7",
@@ -487,6 +488,14 @@
       "d": "Unique code per user, welcome coupon on signup (via /r/[code] link + cookie capture), referrer reward issued only after the friend's first CONFIRMED booking (not just signup - keeps it contingent on real revenue), per-user coupon restriction so codes can't be reused by others, admin-configurable reward percentages, invite page using the Web Share API (real native share sheet inside the app, no Swift/Dart needed).",
       "s": "done",
       "commit": "https://github.com/ckdash-git/photo-studio/commit/45a9df1cc7413d06a2c0583476f6259df21b0d7e"
+    },
+    {
+      "id": "core-10",
+      "cat": "Core Booking",
+      "t": "Admin Panel: coupons, images, referral settings all live",
+      "d": "Coupons via /admin/coupons (already tracked), plus new /admin/images (Pixabay picker) and /admin/referrals (reward % settings).",
+      "s": "done",
+      "commit": "https://github.com/ckdash-git/photo-studio/commit/6c9223747da5e781ebe61b9e25931102d80c5bcc"
     }
   ]
 }
