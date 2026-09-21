@@ -62,7 +62,7 @@
       "id": "core-9",
       "cat": "Core Booking",
       "t": "Admin panel for managing services/slots",
-      "d": "Full Admin Panel: services CRUD, bulk slot generation (timezone-safe, skips duplicates), slot deletion, coupons CRUD. Gated by ADMIN_EMAIL match on the same magic-link login - no separate admin credentials.",
+      "d": "Full Admin Panel: services CRUD, bulk slot generation (timezone-safe, skips duplicates), slot deletion, coupons CRUD. Gated by ADMIN_EMAIL match on the same magic-link login - no separate admin credentials. Confirmed working in production after ADMIN_EMAIL was correctly set + case-insensitivity fix deployed.",
       "s": "done",
       "commit": "https://github.com/ckdash-git/photo-studio/commit/9af9a6d8a991a2b4044400c029cf0fa241bb7e7e"
     },
