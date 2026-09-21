@@ -496,6 +496,14 @@
       "d": "Coupons via /admin/coupons (already tracked), plus new /admin/images (Pixabay picker) and /admin/referrals (reward % settings).",
       "s": "done",
       "commit": "https://github.com/ckdash-git/photo-studio/commit/6c9223747da5e781ebe61b9e25931102d80c5bcc"
+    },
+    {
+      "id": "auth-8",
+      "cat": "Accounts & Auth",
+      "t": "Fixed: login broken for www.quickpic.click visitors",
+      "d": "emailRedirectTo used window.location.origin, so a www visitor generated a redirect URL Supabase's allow-list rejected (only non-www was whitelisted), silently falling back to the Site URL root and never exchanging the code for a session. Now uses the canonical NEXT_PUBLIC_SITE_URL. Also needs a Vercel www\u2192non-www domain redirect and the www callback added to Supabase's allow-list as belt-and-suspenders.",
+      "s": "done",
+      "commit": "https://github.com/ckdash-git/photo-studio/commit/5c455c0ef0a94904462f669d9ce429bbf89ab025"
     }
   ]
 }
