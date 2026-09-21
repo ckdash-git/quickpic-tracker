@@ -508,9 +508,9 @@
     {
       "id": "mail-9",
       "cat": "Email & Deliverability",
-      "t": "Diagnosed: Resend click tracking breaks magic link login",
-      "d": "Click tracking rewrites the magic link into a links.quickpic.click tracker URL. Email security scanners/clients pre-fetch links automatically, silently consuming the one-time PKCE token before the real human click. Fix: disable Click Tracking on the domain in Resend (Open tracking is fine to keep - pixel-based, does not rewrite URLs). Config-only fix, no code change - pending user confirmation it resolves login.",
-      "s": "progress"
+      "t": "Not Secure warning - confirmed NOT a real site issue",
+      "d": "Reproduced only in one Chrome profile, not in Incognito or Safari - local to that browser (extension or cached site data), not the actual site. Database checked clean of any http:// image URLs. Also fixed portfolio URL validation to require https:// going forward, and Resend click tracking was separately disabled (fixed the actual magic-link bug it was causing).",
+      "s": "done"
     }
   ]
 }
