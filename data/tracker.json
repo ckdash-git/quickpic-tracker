@@ -511,6 +511,37 @@
       "t": "Not Secure warning - confirmed NOT a real site issue",
       "d": "Reproduced only in one Chrome profile, not in Incognito or Safari - local to that browser (extension or cached site data), not the actual site. Database checked clean of any http:// image URLs. Also fixed portfolio URL validation to require https:// going forward, and Resend click tracking was separately disabled (fixed the actual magic-link bug it was causing).",
       "s": "done"
+    },
+    {
+      "id": "core-11",
+      "cat": "Photographer Marketplace",
+      "t": "Photographers create their own bookable sessions (My Services)",
+      "d": "No longer limited to admin-created services. Photographer sets name/duration/price, appears on home page with attribution.",
+      "s": "done",
+      "commit": "https://github.com/ckdash-git/photo-studio/commit/6c9223747da5e781ebe61b9e25931102d80c5bcc"
+    },
+    {
+      "id": "core-12",
+      "cat": "Photographer Marketplace",
+      "t": "Free-form date/time booking (no pre-generated slots)",
+      "d": "Customer picks any date/time via datetime-local picker for a photographer-owned service. Photographer accepts/declines based on real availability before payment happens. Admin-owned slot-based services unaffected - purely additive.",
+      "s": "done",
+      "commit": "https://github.com/ckdash-git/photo-studio/commit/6c9223747da5e781ebe61b9e25931102d80c5bcc"
+    },
+    {
+      "id": "auth-9",
+      "cat": "Accounts & Auth",
+      "t": "OTP code login (fixes magic link inside the app)",
+      "d": "The app WebView and whatever browser opens the email link have separate cookie storage, so clicking the link can never complete login inside the app - this is a real architectural limit of hybrid WebView apps, not a bug. Typing the 6-digit code from the same email works within the app session directly. Universal Links (the alternative fix) would require native iOS/Android deep-link config I cannot test - deferred.",
+      "s": "done",
+      "commit": "https://github.com/ckdash-git/photo-studio/commit/7be291e61ac66da38c731b7c564734b0055c663e"
+    },
+    {
+      "id": "ui-10",
+      "cat": "Core Booking",
+      "t": "Subtle background gradient on homepage hero",
+      "d": "Restrained, low-opacity blurred gradient blob - the visual polish requested.",
+      "s": "done"
     }
   ]
 }
