@@ -606,6 +606,14 @@
       "d": "User decision: whole app gated (Home/Photographers/Bookings/Account), not just the pages that already required it. Website itself stays publicly browsable - deliberately unaffected, needed for SEO. Each of the 4 app tabs redirects back to itself after login via a validated redirect param, relying on Supabase session sync across the shared WebView cookie store.",
       "s": "done",
       "commit": "https://github.com/ckdash-git/photo-studio/commit/9180e2dcd578881db602d3b51917dd31b88ba314"
+    },
+    {
+      "id": "marketplace-1",
+      "cat": "Photographer Marketplace",
+      "t": "Photographer onboarding flow",
+      "d": "Shown once after first-time profile creation only (not on edits) - explains the two paths to getting booked (list a session vs respond to leads), contact privacy, links directly to portfolio/services/lead-access.",
+      "s": "done",
+      "commit": "https://github.com/ckdash-git/photo-studio/commit/1387c00b018c690ab473e21d03da067c9e77ea02"
     }
   ]
 }
