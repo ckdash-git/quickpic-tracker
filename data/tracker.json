@@ -1,6 +1,6 @@
 {
   "product": "QuickPic",
-  "updated": "2026-09-20",
+  "updated": "2026-09-21",
   "items": [
     {
       "id": "core-1",
@@ -542,6 +542,14 @@
       "t": "Subtle background gradient on homepage hero",
       "d": "Restrained, low-opacity blurred gradient blob - the visual polish requested.",
       "s": "done"
+    },
+    {
+      "id": "auth-10",
+      "cat": "Accounts & Auth",
+      "t": "Cross-tab login sync + branded email template",
+      "d": "A tab left waiting on the code-entry screen now auto-redirects once login completes in another tab (e.g. clicking the magic link opens a new tab) - listens to Supabase's built-in cross-tab session sync. Also: pending-login state survives a reload via sessionStorage. Magic Link/OTP email template redesigned with QuickPic branding, code shown prominently, link as fallback - configured directly in Supabase dashboard, not code.",
+      "s": "done",
+      "commit": "https://github.com/ckdash-git/photo-studio/commit/36cf9fd939c7b374f1518ab1c01842f9366b3076"
     }
   ]
 }
