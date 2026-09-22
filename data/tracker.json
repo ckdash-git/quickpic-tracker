@@ -550,6 +550,38 @@
       "d": "A tab left waiting on the code-entry screen now auto-redirects once login completes in another tab (e.g. clicking the magic link opens a new tab) - listens to Supabase's built-in cross-tab session sync. Also: pending-login state survives a reload via sessionStorage. Magic Link/OTP email template redesigned with QuickPic branding, code shown prominently, link as fallback - configured directly in Supabase dashboard, not code.",
       "s": "done",
       "commit": "https://github.com/ckdash-git/photo-studio/commit/36cf9fd939c7b374f1518ab1c01842f9366b3076"
+    },
+    {
+      "id": "ui-11",
+      "cat": "Core Booking",
+      "t": "Fixed: mobile menu z-index bleed-through",
+      "d": "Decorative hero gradient blob was painting over the header dropdown since neither had explicit z-index. Header now z-50.",
+      "s": "done",
+      "commit": "https://github.com/ckdash-git/photo-studio/commit/3936de9ddb68ed3f1d8644d8454218b7b448055b"
+    },
+    {
+      "id": "ui-12",
+      "cat": "Core Booking",
+      "t": "Fixed: desktop zoom/copy was broken by app-only restrictions leaking into the website",
+      "d": "The no-zoom/no-select CSS I added for the app-feel work was applied site-wide by mistake, breaking normal browser behavior for every desktop and regular-browser visitor. Moved to JS injected only from the app itself (matching the header/footer-hide pattern) - website now behaves normally for everyone else.",
+      "s": "done",
+      "commit": "https://github.com/ckdash-git/photo-studio/commit/3936de9ddb68ed3f1d8644d8454218b7b448055b"
+    },
+    {
+      "id": "ui-13",
+      "cat": "Core Booking",
+      "t": "Global hover/press interaction polish",
+      "d": "Smooth transitions, visible primary-button hover state, subtle card lift on clickable link-cards, tactile press feedback - applied globally rather than per-component.",
+      "s": "done",
+      "commit": "https://github.com/ckdash-git/photo-studio/commit/3936de9ddb68ed3f1d8644d8454218b7b448055b"
+    },
+    {
+      "id": "ui-14",
+      "cat": "Core Booking",
+      "t": "Gradient background extended to more pages",
+      "d": "Home, photographers directory, leads, and account pages now share a subtle decorative background instead of stark white/black. Shared PageGradientBg component.",
+      "s": "done",
+      "commit": "https://github.com/ckdash-git/photo-studio/commit/3936de9ddb68ed3f1d8644d8454218b7b448055b"
     }
   ]
 }
