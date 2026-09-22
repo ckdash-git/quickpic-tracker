@@ -614,6 +614,14 @@
       "d": "Shown once after first-time profile creation only (not on edits) - explains the two paths to getting booked (list a session vs respond to leads), contact privacy, links directly to portfolio/services/lead-access.",
       "s": "done",
       "commit": "https://github.com/ckdash-git/photo-studio/commit/1387c00b018c690ab473e21d03da067c9e77ea02"
+    },
+    {
+      "id": "native-1",
+      "cat": "Mobile App",
+      "t": "Native Flutter migration - phase 1 (Login + Home tab)",
+      "d": "User decision: move off WebView toward native Flutter, motivated by a future native photo-delivery feature (download + auto-expiry) that WebView structurally cannot do. Started with Login screen and Home tab as real Flutter widgets querying Supabase directly. iOS: Home tab content embedded inside the existing Liquid Glass SwiftUI TabView (tab bar chrome untouched, only per-tab content changed). Session bridging built both directions so the still-WebView tabs (Photographers/Bookings/Account) stay logged in. NEEDS: real Supabase anon key pasted into lib/supabase_client.dart, then flutter pub get + full rebuild on both platforms before testing. iOS FlutterViewController/engine-sharing code is UNVERIFIED - no compiler available, highest risk of needing a real debug pass.",
+      "s": "progress",
+      "commit": "https://github.com/ckdash-git/QuickPick-Mobile/commit/7ddbb8efbd39220e0e90bd3d0c7d079a03957841"
     }
   ]
 }
