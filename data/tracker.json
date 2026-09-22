@@ -563,9 +563,9 @@
       "id": "ui-12",
       "cat": "Core Booking",
       "t": "Fixed: desktop zoom/copy was broken by app-only restrictions leaking into the website",
-      "d": "The no-zoom/no-select CSS I added for the app-feel work was applied site-wide by mistake, breaking normal browser behavior for every desktop and regular-browser visitor. Moved to JS injected only from the app itself (matching the header/footer-hide pattern) - website now behaves normally for everyone else. CORRECTION: the first fix (adding z-0 to the gradient blob) was actually wrong - an explicit z-index, even 0, creates its own stacking context that competes unpredictably with the header. Real fix: no z-index at all on the blob, since that stays safely in normal document order behind the header without any ambiguity. Fixed once in the shared PageGradientBg component, so it applies to every page that uses it.",
+      "d": "Took 3 rounds to actually fix. Root cause: the decorative gradient blob had explicit z-index, filter (blur), opacity<1, AND transform (for centering) - each of these INDEPENDENTLY creates its own GPU compositing layer regardless of the others, and mobile Safari has real documented quirks rendering composited layers in unpredictable stacking order relative to other positioned elements (the header dropdown). Fixed by removing all four: color-mix() replaces opacity for transparency, a fixed negative margin replaces transform for centering, no blur filter, no z-index. Only position:absolute remains (confirmed by spec not to trigger a stacking context alone). Confirmed reproducing on a real device, not just simulator.",
       "s": "done",
-      "commit": "https://github.com/ckdash-git/photo-studio/commit/52e080d98ca6697308f0d1af053df1a94f73dee6"
+      "commit": "https://github.com/ckdash-git/photo-studio/commit/9a726ac0daf8257e06843cac026dfa20f0760d0a"
     },
     {
       "id": "ui-13",
