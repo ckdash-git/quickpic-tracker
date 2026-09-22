@@ -1,6 +1,6 @@
 {
   "product": "QuickPic",
-  "updated": "2026-09-21",
+  "updated": "2026-09-22",
   "items": [
     {
       "id": "core-1",
@@ -590,6 +590,22 @@
       "d": "Terms/Privacy/Refunds redesigned with proper card layout (shared LegalPageLayout) instead of a bare text dump. Background gradient extended to My Bookings, Post a Job, Invite, Become a Photographer. Admin pages deliberately left plain/utilitarian by design, not an oversight.",
       "s": "done",
       "commit": "https://github.com/ckdash-git/photo-studio/commit/df841c6a72d59e74b4ca0a19a9d80d1bcfe85734"
+    },
+    {
+      "id": "seo-1",
+      "cat": "Marketing/SEO",
+      "t": "Full SEO audit + fixes",
+      "d": "robots.txt, dynamic sitemap.xml (every active service + photographer), default OG image, per-page metadata for photographer profiles and booking pages (was 27 pages sharing one generic title), Organization + Service JSON-LD structured data with city for local search.",
+      "s": "done",
+      "commit": "https://github.com/ckdash-git/photo-studio/commit/066e3a73f2482a789478275e65fbc2f78ad1237c"
+    },
+    {
+      "id": "auth-11",
+      "cat": "Accounts & Auth",
+      "t": "Mobile app now requires login before showing any content",
+      "d": "User decision: whole app gated (Home/Photographers/Bookings/Account), not just the pages that already required it. Website itself stays publicly browsable - deliberately unaffected, needed for SEO. Each of the 4 app tabs redirects back to itself after login via a validated redirect param, relying on Supabase session sync across the shared WebView cookie store.",
+      "s": "done",
+      "commit": "https://github.com/ckdash-git/photo-studio/commit/9180e2dcd578881db602d3b51917dd31b88ba314"
     }
   ]
 }
