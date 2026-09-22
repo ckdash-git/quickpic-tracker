@@ -582,6 +582,14 @@
       "d": "Home, photographers directory, leads, and account pages now share a subtle decorative background instead of stark white/black. Shared PageGradientBg component.",
       "s": "done",
       "commit": "https://github.com/ckdash-git/photo-studio/commit/3936de9ddb68ed3f1d8644d8454218b7b448055b"
+    },
+    {
+      "id": "ui-15",
+      "cat": "Core Booking",
+      "t": "Reviewed all 28 routes via screenshots - visual polish on remaining plain pages",
+      "d": "Terms/Privacy/Refunds redesigned with proper card layout (shared LegalPageLayout) instead of a bare text dump. Background gradient extended to My Bookings, Post a Job, Invite, Become a Photographer. Admin pages deliberately left plain/utilitarian by design, not an oversight.",
+      "s": "done",
+      "commit": "https://github.com/ckdash-git/photo-studio/commit/df841c6a72d59e74b4ca0a19a9d80d1bcfe85734"
     }
   ]
 }
