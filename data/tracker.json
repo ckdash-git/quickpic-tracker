@@ -563,8 +563,8 @@
       "id": "ui-12",
       "cat": "Core Booking",
       "t": "Fixed: desktop zoom/copy was broken by app-only restrictions leaking into the website",
-      "d": "Took 3 rounds to actually fix. Root cause: the decorative gradient blob had explicit z-index, filter (blur), opacity<1, AND transform (for centering) - each of these INDEPENDENTLY creates its own GPU compositing layer regardless of the others, and mobile Safari has real documented quirks rendering composited layers in unpredictable stacking order relative to other positioned elements (the header dropdown). Fixed by removing all four: color-mix() replaces opacity for transparency, a fixed negative margin replaces transform for centering, no blur filter, no z-index. Only position:absolute remains (confirmed by spec not to trigger a stacking context alone). Confirmed reproducing on a real device, not just simulator.",
-      "s": "done",
+      "d": "STILL REPRODUCING on real device after 3 fix attempts (z-index, filter, opacity+transform all removed as suspected triggers). Deprioritized by user for now - revisit with real Safari Web Inspector diagnostics (computed background-color/stacking) rather than further theory-only fixes.",
+      "s": "progress",
       "commit": "https://github.com/ckdash-git/photo-studio/commit/9a726ac0daf8257e06843cac026dfa20f0760d0a"
     },
     {
