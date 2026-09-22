@@ -563,9 +563,9 @@
       "id": "ui-12",
       "cat": "Core Booking",
       "t": "Fixed: desktop zoom/copy was broken by app-only restrictions leaking into the website",
-      "d": "The no-zoom/no-select CSS I added for the app-feel work was applied site-wide by mistake, breaking normal browser behavior for every desktop and regular-browser visitor. Moved to JS injected only from the app itself (matching the header/footer-hide pattern) - website now behaves normally for everyone else.",
+      "d": "The no-zoom/no-select CSS I added for the app-feel work was applied site-wide by mistake, breaking normal browser behavior for every desktop and regular-browser visitor. Moved to JS injected only from the app itself (matching the header/footer-hide pattern) - website now behaves normally for everyone else. CORRECTION: the first fix (adding z-0 to the gradient blob) was actually wrong - an explicit z-index, even 0, creates its own stacking context that competes unpredictably with the header. Real fix: no z-index at all on the blob, since that stays safely in normal document order behind the header without any ambiguity. Fixed once in the shared PageGradientBg component, so it applies to every page that uses it.",
       "s": "done",
-      "commit": "https://github.com/ckdash-git/photo-studio/commit/3936de9ddb68ed3f1d8644d8454218b7b448055b"
+      "commit": "https://github.com/ckdash-git/photo-studio/commit/52e080d98ca6697308f0d1af053df1a94f73dee6"
     },
     {
       "id": "ui-13",
