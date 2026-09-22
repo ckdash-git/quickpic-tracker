@@ -622,6 +622,14 @@
       "d": "User decision: move off WebView toward native Flutter, motivated by a future native photo-delivery feature (download + auto-expiry) that WebView structurally cannot do. Started with Login screen and Home tab as real Flutter widgets querying Supabase directly. iOS: Home tab content embedded inside the existing Liquid Glass SwiftUI TabView (tab bar chrome untouched, only per-tab content changed). Session bridging built both directions so the still-WebView tabs (Photographers/Bookings/Account) stay logged in. NEEDS: real Supabase anon key pasted into lib/supabase_client.dart, then flutter pub get + full rebuild on both platforms before testing. iOS FlutterViewController/engine-sharing code is UNVERIFIED - no compiler available, highest risk of needing a real debug pass.",
       "s": "progress",
       "commit": "https://github.com/ckdash-git/QuickPick-Mobile/commit/7ddbb8efbd39220e0e90bd3d0c7d079a03957841"
+    },
+    {
+      "id": "native-2",
+      "cat": "Mobile App",
+      "t": "Universal Links / App Links for magic-link login",
+      "d": "Tapping the email link now opens the app directly and signs in via Supabase PKCE exchange, on both iOS and Android - the OTP-code screen stays as a working fallback, unremoved. BLOCKED on account-specific values only the app owner has: real bundle ID (currently still the default com.example.quickPic placeholder - never set to something real), Apple Developer Team ID, Android signing cert SHA256 fingerprint (from ./gradlew signingReport). TODOs left in the website well-known route files and native code. Entirely unverified - no compiler/simulator/device available.",
+      "s": "progress",
+      "commit": "https://github.com/ckdash-git/QuickPick-Mobile/commit/5490bc1615588af2a7e123f953f0fe730a4752ce"
     }
   ]
 }
